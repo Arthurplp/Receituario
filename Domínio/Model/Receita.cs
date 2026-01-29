@@ -1,4 +1,7 @@
-﻿namespace Domínio.Model
+﻿using System;
+using System.Collections.Generic;
+
+namespace Domínio.Model
 {
     public class Receita
     {

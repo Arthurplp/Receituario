@@ -1,12 +1,13 @@
-﻿using Domínio.Model;
+﻿using System;
+using Domínio.Model;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Domínio.Interfaces
 {
-    //aqui a gente cria os métodos que eu vou utilizar na service 
-
     public interface IVinculoService
     {
-        Task<List<VinculoReceitaMaterial>> GetReceitas();
+        Task<List<VinculoReceitaMaterial>> GetVinculos();
         Task<VinculoReceitaMaterial>? GetById(Guid Id);
         Task Delete(Guid Id);
         Task<VinculoReceitaMaterial> Create(VinculoReceitaMaterial vinculo);
