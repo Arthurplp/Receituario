@@ -7,25 +7,25 @@ namespace Infraestrutura.Repositorios
 {
     public class RepositorioReceita : IRepositorioReceita
     {
-        protected readonly Context _context;
+        protected readonly Context _dbContext;
         protected readonly DbSet<Receita> _dbSet;
 
-        public RepositorioReceita(Context context)
+        public RepositorioReceita(Context dbContext)
         {
-            _context = context;
-            _dbSet = _context.Set<Receita>();
+            _dbContext = dbContext;
+            _dbSet = _dbContext.Set<Receita>();
         }
 
         public async Task Adicionar(Receita receita)
         {
             await _dbSet.AddAsync(receita);
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task Atualizar(Receita receita)
         {
             _dbSet.Update(receita);
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<Receita?> ObterPorId(Guid id)
@@ -45,7 +45,7 @@ namespace Infraestrutura.Repositorios
             var receita = await ObterPorId(id);
 
             _dbSet.Remove(receita!);
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

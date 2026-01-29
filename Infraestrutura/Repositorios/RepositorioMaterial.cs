@@ -7,25 +7,25 @@ namespace Infraestrutura.Repositorios
 {
     public class RepositorioMaterial : IRepositorioMaterial
     {
-        protected readonly Context _context;
+        protected readonly Context _dbContext;
         protected readonly DbSet<Material> _dbSet;
 
-        public RepositorioMaterial(Context context)
+        public RepositorioMaterial(Context dbContext)
         {
-            _context = context;
-            _dbSet = _context.Set<Material>();
+            _dbContext = dbContext;
+            _dbSet = _dbContext.Set<Material>();
         }
 
         public async Task Adicionar(Material material)
         {
             await _dbSet.AddAsync(material);
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task Atualizar(Material material)
         {
             _dbSet.Update(material);
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<Material?> ObterPorId(Guid id)
@@ -45,7 +45,7 @@ namespace Infraestrutura.Repositorios
             var material = await ObterPorId(id);
 
             _dbSet.Remove(material!);
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

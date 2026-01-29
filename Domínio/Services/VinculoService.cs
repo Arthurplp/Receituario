@@ -1,10 +1,8 @@
-﻿using Domínio.Interfaces;
+﻿using System;
 using Domínio.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Domínio.Interfaces;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Domínio.Services
 {
@@ -28,20 +26,25 @@ namespace Domínio.Services
                 Console.WriteLine("Os dados do Vínculo são nulos!");
                 return null;
             }
+
             try
             {
                 var receita = await _repositorioReceita.ObterPorId(vinculo.IdReceita);
+
                 if (receita == null)
                 {
                     Console.WriteLine("Receita não encontrada!");
                     return null;
                 }
+
                 var material = await _repositorioMaterial.ObterPorId(vinculo.IdMaterial);
+
                 if (material == null)
                 {
                     Console.WriteLine("Material não encontrado!");
                     return null;
                 }
+
                 await _repositorioVinculo.Adicionar(vinculo);
                 return vinculo;
             }
@@ -59,6 +62,7 @@ namespace Domínio.Services
                 Console.WriteLine("O Id fornecido é inválido!");
                 return Task.CompletedTask;
             }
+
             try
             {
                 return _repositorioVinculo.Remover(Id);
@@ -78,6 +82,7 @@ namespace Domínio.Services
                 Console.WriteLine("Os dados do Vínculo são nulos!");
                 return null;
             }
+
             try
             {
                 await _repositorioVinculo.Atualizar(vinculo);
@@ -97,6 +102,7 @@ namespace Domínio.Services
                 Console.WriteLine("O Id fornecido é inválido!");
                 return null;
             }
+
             try
             {
                 return _repositorioVinculo.ObterPorId(Id);
@@ -109,9 +115,17 @@ namespace Domínio.Services
             }
         }
 
-        public Task<List<VinculoReceitaMaterial>> GetReceitas()
+        public Task<List<VinculoReceitaMaterial>> GetVinculos()
         {
-            throw new NotImplementedException();
+            try 
+            {
+                return _repositorioVinculo.ObterTodos();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter os vínculos: {ex.Message}");
+                return Task.FromResult(new List<VinculoReceitaMaterial>());
+            }
         }
     }
 }

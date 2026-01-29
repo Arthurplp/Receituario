@@ -8,10 +8,6 @@ namespace Infraestrutura.Contexts
     {
         public Context(DbContextOptions<Context> options) : base(options) { }
 
-        public DbSet<Receita> Receitas { get; set; }
-        public DbSet<Material> Materiais { get; set; }
-        public DbSet<UnidadeDeMedida> UnidadeDeMedida { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -1,5 +1,7 @@
 ﻿using Domínio.Interfaces;
 using Domínio.Model;
+using Infraestrutura.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,31 +12,44 @@ namespace Infraestrutura.Repositorios
 {
     internal class RepositorioVinculo : IRepositorioVinculo
     {
+        private readonly Context _dbContext;
+        private readonly DbSet<VinculoReceitaMaterial> _dbSet;
 
-        private readonly VinculoReceitaMaterial _vinculos = new VinculoReceitaMaterial;
-        public Task Adicionar(VinculoReceitaMaterial vinculo)
+        public RepositorioVinculo(Context dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+            _dbSet = _dbContext.Set<VinculoReceitaMaterial>();
         }
 
-        public Task Atualizar(VinculoReceitaMaterial vinculo)
+        public async Task Adicionar(VinculoReceitaMaterial vinculo)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(vinculo);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task<VinculoReceitaMaterial?> ObterPorId(Guid id)
+        public async Task Atualizar(VinculoReceitaMaterial vinculo)
         {
-            throw new NotImplementedException();
+            _dbSet.Update(vinculo);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task<List<VinculoReceitaMaterial>> ObterTodos()
+        public async Task<VinculoReceitaMaterial?> ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            var vinculo = await _dbSet.FindAsync(id);
+            return vinculo;
         }
 
-        public Task Remover(Guid id)
+        public async Task<List<VinculoReceitaMaterial>> ObterTodos()
         {
-            throw new NotImplementedException();
+            var vinculo = await _dbSet.ToListAsync();
+            return vinculo;
+        }
+
+        public async Task Remover(Guid id)
+        {
+            var vinculoId = await ObterPorId(id);
+            _dbSet.Remove(vinculoId!);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

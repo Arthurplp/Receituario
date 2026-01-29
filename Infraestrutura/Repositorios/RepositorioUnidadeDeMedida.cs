@@ -7,25 +7,25 @@ namespace Infraestrutura.Repositorios
 {
     public class RepositorioUnidadeDeMedida : IRepositorioUnidadeDeMedida
     {
-        protected readonly Context _context;
+        protected readonly Context _dbContext;
         protected readonly DbSet<UnidadeDeMedida> _dbSet;
 
-        public RepositorioUnidadeDeMedida(Context context)
+        public RepositorioUnidadeDeMedida(Context dbContext)
         {
-            _context = context;
-            _dbSet = _context.Set<UnidadeDeMedida>();
+            _dbContext = dbContext;
+            _dbSet = _dbContext.Set<UnidadeDeMedida>();
         }
 
         public async Task Adicionar(UnidadeDeMedida unidadeDeMedida)
         {
             await _dbSet.AddAsync(unidadeDeMedida);
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task Atualizar(UnidadeDeMedida unidadeDeMedida)
         {
             _dbSet.Update(unidadeDeMedida);
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<UnidadeDeMedida?> ObterPorId(Guid id)
@@ -45,7 +45,7 @@ namespace Infraestrutura.Repositorios
             var unidadeDeMedida = await ObterPorId(id);
 
             _dbSet.Remove(unidadeDeMedida!);
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
 
 
