@@ -1,0 +1,69 @@
+﻿@using Domínio.Model
+@model IEnumerable<Aplicacao.Models.ReceitaViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-2">Receituáriaao</h1>
+    <p>Site funcional para gerenciamento e busca de receitas.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnidadeDeMedida)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+
+                if(Model != null)
+                {
+                    foreach (var receita in Model)
+                    {
+                        if(receita == null)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>
+                                    @receita.Nome
+                                </td>
+                                <td>
+                                    @receita.Descricao
+                                </td>
+                                <td>
+                                    @receita.UnidadeDeMedida
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            Nada para ver aqui
+                        </td>
+                        <td>
+                            Nada para ver aqui
+                        </td>
+                        <td>
+                            Nada para ver aqui
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
