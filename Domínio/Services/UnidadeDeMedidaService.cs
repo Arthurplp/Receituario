@@ -1,5 +1,8 @@
-﻿using Domínio.Interfaces;
+﻿using System;
 using Domínio.Model;
+using Domínio.Interfaces;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Domínio.Services
 {

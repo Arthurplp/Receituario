@@ -1,4 +1,7 @@
-﻿using Domínio.Model;
+﻿using System;
+using Domínio.Model;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Domínio.Interfaces
 {
