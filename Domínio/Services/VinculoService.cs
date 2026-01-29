@@ -105,7 +105,7 @@ namespace Domínio.Services
 
             try
             {
-                return _repositorioVinculo.ObterPorId(Id);
+                return _repositorioVinculo.ObterPorId(Id)!;
 
             }
             catch (Exception ex)

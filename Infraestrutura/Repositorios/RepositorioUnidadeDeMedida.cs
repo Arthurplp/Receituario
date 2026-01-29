@@ -47,8 +47,5 @@ namespace Infraestrutura.Repositorios
             _dbSet.Remove(unidadeDeMedida!);
             await _dbContext.SaveChangesAsync();
         }
-
-
-
     }
 }

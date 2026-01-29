@@ -1,12 +1,7 @@
-﻿using Domínio.Interfaces;
-using Domínio.Model;
+﻿using Domínio.Model;
+using Domínio.Interfaces;
 using Infraestrutura.Contexts;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorios
 {
