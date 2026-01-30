@@ -1,0 +1,27 @@
+## Build
+bin/
+obj/
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Logs
+*.log
+
+## AppSettings local
+appsettings.Development.json
+
+## EF Core
+Migrations/*.csproj.user
+
+## Rider / VSCode
+.idea/
+.vscode/
+
+## OS
+.DS_Store
+Thumbs.db
