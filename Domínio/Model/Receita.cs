@@ -12,13 +12,13 @@ namespace Domínio.Model
         public string Nome { get; set; } = null!;
         public List<Receita>? SubReceitas { get; set; }
         public List<VinculoReceitaMaterial>? Vinculos { get; set; }
-        public decimal PesoTotal { get; set; }
+        public double PesoTotal { get; set; }
         public UnidadeDeMedida UnidadeMedida { get; set; } = null!;
         public Receita? ReceitaPai { get; set; }
 
         public Receita() { }
 
-        public Receita(string descricao, string nome, decimal pesoTotal, UnidadeDeMedida unidadeMedida)
+        public Receita(string descricao, string nome, double pesoTotal, UnidadeDeMedida unidadeMedida)
         {
             this.Id = Guid.NewGuid();
             this.Descricao = descricao;

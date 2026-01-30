@@ -1,8 +1,9 @@
-using Microsoft.EntityFrameworkCore;
-using Domínio.Services;
 using Domínio.Interfaces;
-using Infraestrutura.Repositorios;
+using Domínio.Services;
 using Infraestrutura.Contexts;
+using Infraestrutura.Repositorios;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,11 @@ builder.Services.AddScoped<IRepositorioReceita, RepositorioReceita>();
 builder.Services.AddScoped<ReceitaService>();
 
 var app = builder.Build();
+
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
 
 app.UseStaticFiles();
 app.UseRouting();

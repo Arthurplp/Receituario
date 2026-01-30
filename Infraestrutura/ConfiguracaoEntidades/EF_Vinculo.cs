@@ -14,6 +14,8 @@ namespace Infraestrutura.ConfiguracaoEntidades
         {
             builder.HasKey(t => t.Id);
             
+            builder.HasIndex(t => new { t.IdReceita, t.IdMaterial }).IsUnique();
+
             builder.HasOne(t => t.receita)
                 .WithMany(t => t.Vinculos)
                 .HasForeignKey(t => t.IdReceita);
